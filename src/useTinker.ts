@@ -82,7 +82,7 @@ function parseArgs(
  * @param folderSettingsOrDeps
  * @param depsOrUndefined
  */
-export function useControls<S extends Schema, F extends SchemaOrFn<S> | string, G extends SchemaOrFn<S>>(
+export function useTinker<S extends Schema, F extends SchemaOrFn<S> | string, G extends SchemaOrFn<S>>(
   schemaOrFolderName: F,
   settingsOrDepsOrSchema?: HookSettings | React.DependencyList | G,
   depsOrSettingsOrFolderSettings?: React.DependencyList | HookSettings | FolderSettings,
@@ -229,10 +229,6 @@ export function useControls<S extends Schema, F extends SchemaOrFn<S> | string, 
     )
     return () => unsubscriptions.forEach((unsub) => unsub())
   }, [onEditStartPaths, onEditEndPaths, store])
-
-
-  console.info(values)
-
 
   if (schemaIsFunction) return [values, set, get] as any
   return values as any

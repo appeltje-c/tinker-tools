@@ -27,7 +27,7 @@ export function Tinker({ isRoot = false, ...props }: TinkerProps) {
 }
 
 /**
- * This hook is used by Tinker useTinkering, and ensures that we spawn a Tinker Panel
+ * This hook is used by Tinker useTinker, and ensures that we spawn a Tinker Panel
  * without the user having to put it into the component tree. This should only
  * happen when using the global store
  * @param isGlobalPanel

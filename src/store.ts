@@ -86,7 +86,7 @@ export const Store = function (this: StoreType) {
   }
 
   /**
-   * When the useControls hook unmmounts, it will call this function that will
+   * When the useTinker hook unmmounts, it will call this function that will
    * decrease the __refCount of all the inputs. When an input __refCount reaches 0, it
    * should no longer be displayed in the panel.
    *

@@ -26,7 +26,7 @@ register(TinkerInputs.VECTOR3D, vector3d)
 register(TinkerInputs.VECTOR2D, vector2d)
 
 // main hook
-export { useControls } from './useTinkering'
+export { useTinker } from './useTinker'
 
 // panel components
 export { Tinker, TinkerPanel } from './components/Tinker'
