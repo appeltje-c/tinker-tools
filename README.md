@@ -1,2 +1,2 @@
 # tinker-tools
-Tinkering tools to customize your React projects
+Tinker tools to customize your React projects
