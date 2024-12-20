@@ -142,7 +142,7 @@ export const { styled, css, createTheme, globalCss, keyframes } = createStitches
 })
 
 export const globalStyles = globalCss({
-  '.leva__panel__dragged': {
+  '.tinker__panel__dragged': {
     WebkitUserDrag: 'none',
     userSelect: 'none',
     input: { userSelect: 'none' },

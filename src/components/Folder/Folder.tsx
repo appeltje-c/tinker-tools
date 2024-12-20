@@ -50,6 +50,7 @@ export const TreeWrapper = React.memo(
     const store = useStoreContext()
 
     const getOrder = ([key, o]: [key: string, o: any]) => {
+      // @ts-ignore
       const order = isInput(o) ? store.getInput(o.path)?.order : store.getFolderSettings(join(parent, key)).order
       return order || 0
     }

@@ -157,15 +157,10 @@ const ValueError = function (this: ValueErrorType, message: string, value: any, 
   this.message = 'Tinker: ' + message
   this.previousValue = value
   this.error = error
-} as unknown as { new (message: string, value: any, error?: unknown): ValueErrorType }
+} as unknown as { new(message: string, value: any, error?: unknown): ValueErrorType }
 
 export function sanitizeValue({ type, value, settings }: SanitizeProps, newValue: any, path: string, store: StoreType) {
-  // sanitizeValue can accept a new value in the form of fn(oldValue). This
-  // allows inputs to run onUpdate(oldValue => oldValue + 1). However, this
-  // issue makes the case of a SELECT input with functions as options:
-  // https://github.com/pmndrs/leva/issues/165
-  // In that situation, functions passed as options would be ran and we don't
-  // want that. So in case of the SELECT input, we never compute the functions.
+
   const _newValue = type !== 'SELECT' && typeof newValue === 'function' ? newValue(value) : newValue
   let sanitizedNewValue
   try {
