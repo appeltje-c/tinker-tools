@@ -6,7 +6,7 @@
 import { expectType } from 'tsd'
 import { folder } from '../helpers'
 import { createPlugin } from '../plugin'
-import { useControls } from '../useControls'
+import { useControls } from '../useTinkering'
 
 /**
  * api
