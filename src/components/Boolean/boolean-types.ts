@@ -1,3 +1,3 @@
-import type { LevaInputProps } from '../../types'
+import type { TinkerInputProps } from '../../types'
 
-export type BooleanProps = LevaInputProps<boolean>
+export type BooleanProps = TinkerInputProps<boolean>

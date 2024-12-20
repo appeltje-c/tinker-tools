@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import create, { SetState, GetState, StoreApi } from 'zustand'
 import { subscribeWithSelector } from 'zustand/middleware'
-import { normalizeInput, join, updateInput, warn, LevaErrors, getUid } from './utils'
+import { normalizeInput, join, updateInput, TinkerErrors, getUid } from './utils'
 import { SpecialInputs, MappedPaths, DataInput } from './types'
 import type { Data, FolderSettings, State, StoreType } from './types'
 import { createEventEmitter } from './eventEmitter'
@@ -148,7 +148,7 @@ export const Store = function (this: StoreType) {
           // @ts-ignore
           const { type, value, ...rest } = newInputData
           if (type !== input.type) {
-            warn(LevaErrors.INPUT_TYPE_OVERRIDE, input.type, type)
+            console.warn(TinkerErrors.INPUT_TYPE_OVERRIDE, input.type, type)
           } else {
             if (input.__refCount === 0 || override) {
               Object.assign(input, rest)
@@ -222,7 +222,7 @@ export const Store = function (this: StoreType) {
     try {
       return this.getData()[path] as DataInput
     } catch (e) {
-      warn(LevaErrors.PATH_DOESNT_EXIST, path, "null")
+      console.warn(TinkerErrors.PATH_DOESNT_EXIST, path, "null")
     }
   }
 
@@ -263,7 +263,7 @@ export const Store = function (this: StoreType) {
 
     Object.entries(schema).forEach(([key, rawInput]: [string, any]) => {
       // if the key is empty, skip schema parsing and prompt an error.
-      if (key === '') return warn(LevaErrors.EMPTY_KEY, "", "")
+      if (key === '') return console.warn(TinkerErrors.EMPTY_KEY, "", "")
 
       let newPath = join(rootPath, key)
 
@@ -277,7 +277,7 @@ export const Store = function (this: StoreType) {
         if (!(newPath in folders)) folders[newPath] = rawInput.settings as FolderSettings
       } else if (key in mappedPaths) {
         // if a key already exists, prompt an error.
-        warn(LevaErrors.DUPLICATE_KEYS, key, newPath)
+        console.warn(TinkerErrors.DUPLICATE_KEYS, key, newPath)
       } else {
         const normalizedInput = normalizeInput(rawInput, key, newPath, data)
         if (normalizedInput) {
@@ -287,7 +287,7 @@ export const Store = function (this: StoreType) {
           data[newPath] = { type, ..._options, ...input, fromPanel: true }
           mappedPaths[key] = { path: newPath, onChange, transient, onEditStart, onEditEnd }
         } else {
-          warn(LevaErrors.UNKNOWN_INPUT, newPath, rawInput)
+          console.warn(TinkerErrors.UNKNOWN_INPUT, newPath, rawInput)
         }
       }
     })
@@ -302,7 +302,7 @@ export const Store = function (this: StoreType) {
   }
 } as any as { new(): StoreType }
 
-export const levaStore = new Store()
+export const tinkerStore = new Store()
 
 export function useCreateStore() {
   return useMemo(() => new Store(), [])
@@ -311,5 +311,5 @@ export function useCreateStore() {
 if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
   // TODO remove store from window
   // @ts-expect-error
-  window.__STORE = levaStore
+  window.__STORE = tinkerStore
 }

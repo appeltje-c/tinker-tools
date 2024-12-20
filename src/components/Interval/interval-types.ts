@@ -1,4 +1,4 @@
-import type { LevaInputProps, IntervalInput } from '../../types'
+import type { TinkerInputProps, IntervalInput } from '../../types'
 import type { InternalNumberSettings } from '../Number/number-types'
 
 export type Interval = IntervalInput['value']
@@ -10,7 +10,7 @@ export type InternalIntervalSettings = {
   max: InternalNumberSettings
 }
 
-export type IntervalProps = LevaInputProps<Interval, InternalIntervalSettings, InternalInterval>
+export type IntervalProps = TinkerInputProps<Interval, InternalIntervalSettings, InternalInterval>
 
 export type IntervalSliderProps = {
   value: InternalInterval

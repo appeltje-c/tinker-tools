@@ -5,16 +5,16 @@ import { TreeWrapper } from '../Folder'
 import { useDeepMemo, useTransform, useVisiblePaths } from '../../hooks'
 
 import { StyledRoot } from './StyledRoot'
-import { mergeTheme, LevaCustomTheme, globalStyles } from '../../styles'
+import { mergeTheme, TinkerCustomTheme, globalStyles } from '../../styles'
 import { ThemeContext, StoreContext, PanelSettingsContext } from '../../context'
 import { TitleWithFilter } from './Filter'
 import { StoreType } from '../../types'
 
-export type LevaRootProps = {
+export type TinkerRootProps = {
   /**
    * Theme with Stitches tokens
    */
-  theme?: LevaCustomTheme
+  theme?: TinkerCustomTheme
   /**
    * The store to be used by the panel
    */
@@ -61,7 +61,7 @@ export type LevaRootProps = {
          */
         title?: React.ReactNode
         /**
-         * Toggle whether the leva panel can be dragged around via the title bar.
+         * Toggle whether the Tinker panel can be dragged around via the title bar.
          */
         drag?: boolean
         /**
@@ -69,19 +69,19 @@ export type LevaRootProps = {
          */
         filter?: boolean
         /**
-         * The position(x and y coordinates) of the leva panel.
+         * The position(x and y coordinates) of the Tinker panel.
          */
         position?: { x?: number; y?: number }
         /**
-         * The callback is called when the leva panel is dragged.
+         * The callback is called when the Tinker panel is dragged.
          */
         onDrag?: (position: { x?: number; y?: number }) => void
         /**
-         * The callback is called when the leva panel starts to be dragged.
+         * The callback is called when the Tinker panel starts to be dragged.
          */
         onDragStart?: (position: { x?: number; y?: number }) => void
         /**
-         * The callback is called when the leva panel stops being dragged.
+         * The callback is called when the Tinker panel stops being dragged.
          */
         onDragEnd?: (position: { x?: number; y?: number }) => void
       }
@@ -91,7 +91,7 @@ export type LevaRootProps = {
   hideCopyButton?: boolean
 }
 
-export function LevaRoot({ store, hidden = false, theme, collapsed = false, ...props }: LevaRootProps) {
+export function TinkerRoot({ store, hidden = false, theme, collapsed = false, ...props }: TinkerRootProps) {
   const themeContext = useDeepMemo(() => mergeTheme(theme), [theme])
   // collapsible
   const [toggled, setToggle] = useState(!collapsed)
@@ -114,7 +114,7 @@ export function LevaRoot({ store, hidden = false, theme, collapsed = false, ...p
 
   return (
     <ThemeContext.Provider value={themeContext}>
-      <LevaCore
+      <TinkerCore
         store={store}
         {...props}
         toggled={computedToggled}
@@ -125,14 +125,14 @@ export function LevaRoot({ store, hidden = false, theme, collapsed = false, ...p
   )
 }
 
-type LevaCoreProps = Omit<LevaRootProps, 'theme' | 'hidden' | 'collapsed'> & {
+type TinkerCoreProps = Omit<TinkerRootProps, 'theme' | 'hidden' | 'collapsed'> & {
   store: StoreType
   rootClass: string
   toggled: boolean
   setToggle: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const LevaCore = React.memo(
+const TinkerCore = React.memo(
   ({
     store,
     rootClass,
@@ -152,7 +152,7 @@ const LevaCore = React.memo(
     hideCopyButton = false,
     toggled,
     setToggle,
-  }: LevaCoreProps) => {
+  }: TinkerCoreProps) => {
     const paths = useVisiblePaths(store)
     const [filter, setFilter] = useState('')
     const tree = useMemo(() => buildTree(paths, filter), [paths, filter])

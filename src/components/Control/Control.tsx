@@ -1,6 +1,6 @@
 import React from 'react'
 import { ControlInput } from './ControlInput'
-import { log, LevaErrors } from '../../utils/log'
+import { TinkerErrors } from '../../utils/log'
 import { Plugins } from '../../plugin'
 import { Button } from '../Button'
 import { ButtonGroup } from '../ButtonGroup'
@@ -29,7 +29,7 @@ export const Control = React.memo(({ path }: ControlProps) => {
   }
 
   if (!(type in Plugins)) {
-    log(LevaErrors.UNSUPPORTED_INPUT, type, path)
+    console.info(TinkerErrors.UNSUPPORTED_INPUT, type, path)
     return null
   }
 

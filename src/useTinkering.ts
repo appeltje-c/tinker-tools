@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useCallback, useState, useRef } from 'react'
-import { levaStore } from './store'
+import { tinkerStore } from './store'
 import { folder } from './helpers'
 import { useDeepMemo, useValuesForPath } from './hooks'
-import { useRenderRoot } from './components/Leva'
+import { useRenderRoot } from './components/Tinker'
 import type { FolderSettings, Schema, SchemaToValues, StoreType, OnChangeHandler } from './types'
 import shallow from 'zustand/shallow'
 
@@ -115,11 +115,11 @@ export function useControls<S extends Schema, F extends SchemaOrFn<S> | string, 
     return folderName ? { [folderName]: folder(s, folderSettings) } : s
   }, deps)
 
-  // GlobalPanel means that no store was provided, therefore we're using the levaStore
+  // GlobalPanel means that no store was provided, therefore we're using the tinkerStore
   const isGlobalPanel = !hookSettings?.store
 
   useRenderRoot(isGlobalPanel)
-  const [store] = useState(() => hookSettings?.store || levaStore)
+  const [store] = useState(() => hookSettings?.store || tinkerStore)
 
   /**
    * Parses the schema to extract the inputs initial data.

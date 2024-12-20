@@ -1,4 +1,4 @@
-import { warn, LevaErrors } from './utils/log'
+import { TinkerErrors } from './utils/log'
 import type {
   Plugin,
   CustomInput,
@@ -6,7 +6,7 @@ import type {
   InternalPlugin,
   StoreType,
   Data,
-  LevaInputs,
+  TinkerInputs,
   InputOptions,
 } from './types'
 
@@ -29,11 +29,11 @@ export function getValueType({ value, ...settings }: any) {
  * @param plugin
  */
 export function register<Input, Value, InternalSettings, Settings>(
-  type: LevaInputs,
+  type: TinkerInputs,
   { schema, ...plugin }: InternalPlugin<Input, Value, Settings, InternalSettings>
 ) {
   if (type in Plugins) {
-    warn(LevaErrors.ALREADY_REGISTERED_TYPE, type)
+    console.warn(TinkerErrors.ALREADY_REGISTERED_TYPE, type)
     return
   }
   Schemas.push((value: any, settings?: any) => schema(value, settings) && type)
@@ -54,8 +54,8 @@ export function createInternalPlugin<Input, Value, InternalSettings, Settings>(
 
 type PluginInput<Input> = Input extends object
   ? Input extends Array<any>
-    ? Input | ({ value?: Input } & InputOptions)
-    : Input & InputOptions
+  ? Input | ({ value?: Input } & InputOptions)
+  : Input & InputOptions
   : Input
 
 /**

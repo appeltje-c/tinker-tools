@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
-import { levaStore } from '../../store'
-import { LevaRoot, LevaRootProps } from './LevaRoot'
+import { tinkerStore } from '../../store'
+import { TinkerRoot, TinkerRootProps } from './TinkerRoot'
 import { render } from '../../utils/react'
 
 let rootInitialized = false
 let rootEl: HTMLElement | null = null
 
-type LevaProps = Omit<Partial<LevaRootProps>, 'store'> & { isRoot?: boolean }
+type TinkerProps = Omit<Partial<TinkerRootProps>, 'store'> & { isRoot?: boolean }
 
 // uses global store
-export function Leva({ isRoot = false, ...props }: LevaProps) {
+export function Tinker({ isRoot = false, ...props }: TinkerProps) {
   useEffect(() => {
     rootInitialized = true
     // if this panel was attached somewhere in the app and there is already
@@ -23,11 +23,11 @@ export function Leva({ isRoot = false, ...props }: LevaProps) {
     }
   }, [isRoot])
 
-  return <LevaRoot store={levaStore} {...props} />
+  return <TinkerRoot store={tinkerStore} {...props} />
 }
 
 /**
- * This hook is used by Leva useControls, and ensures that we spawn a Leva Panel
+ * This hook is used by Tinker useTinkering, and ensures that we spawn a Tinker Panel
  * without the user having to put it into the component tree. This should only
  * happen when using the global store
  * @param isGlobalPanel
@@ -37,10 +37,10 @@ export function useRenderRoot(isGlobalPanel: boolean) {
     if (isGlobalPanel && !rootInitialized) {
       if (!rootEl) {
         rootEl =
-          document.getElementById('leva__root') || Object.assign(document.createElement('div'), { id: 'leva__root' })
+          document.getElementById('tinker__root') || Object.assign(document.createElement('div'), { id: 'tinker__root' })
         if (document.body) {
           document.body.appendChild(rootEl)
-          render(<Leva isRoot />, rootEl)
+          render(<Tinker isRoot />, rootEl)
         }
       }
       rootInitialized = true

@@ -24,11 +24,11 @@ export function usePanelSettingsContext() {
   return useContext(PanelSettingsContext)!
 }
 
-type LevaStoreProviderProps = {
+type TinkerStoreProviderProps = {
   children: React.ReactChild | React.ReactChild[] | React.ReactChildren
   store: StoreType
 }
 
-export function LevaStoreProvider({ children, store }: LevaStoreProviderProps) {
+export function TinkerStoreProvider({ children, store }: TinkerStoreProviderProps) {
   return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
 }

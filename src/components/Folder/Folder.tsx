@@ -5,7 +5,7 @@ import { useTh } from '../../styles'
 import type { Tree } from '../../types'
 import { join } from '../../utils'
 import { Control } from '../Control'
-import { isInput } from '../Leva/tree'
+import { isInput } from '../Tinker/tree'
 import { FolderTitle } from './FolderTitle'
 import { StyledContent, StyledFolder, StyledWrapper } from './StyledFolder'
 
@@ -23,8 +23,8 @@ const Folder = ({ name, path, tree }: FolderProps) => {
   const textColor = useTh('colors', 'folderTextColor')
 
   useLayoutEffect(() => {
-    folderRef.current!.style.setProperty('--leva-colors-folderWidgetColor', color || widgetColor)
-    folderRef.current!.style.setProperty('--leva-colors-folderTextColor', color || textColor)
+    folderRef.current!.style.setProperty('--tinker-colors-folderWidgetColor', color || widgetColor)
+    folderRef.current!.style.setProperty('--tinker-colors-folderTextColor', color || textColor)
   }, [color, widgetColor, textColor])
 
   return (

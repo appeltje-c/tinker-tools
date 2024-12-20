@@ -1,6 +1,6 @@
 {
   "name": "tinker-tools",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Tinkering to customize your React projects",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

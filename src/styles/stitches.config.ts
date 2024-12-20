@@ -75,7 +75,7 @@ export const getDefaultTheme = () => ({
 })
 
 export type FullTheme = ReturnType<typeof getDefaultTheme>
-export type LevaCustomTheme = Partial<{ [k in keyof FullTheme]: Partial<FullTheme[k]> }>
+export type TinkerCustomTheme = Partial<{ [k in keyof FullTheme]: Partial<FullTheme[k]> }>
 
 type Options = { key: string; borderColor: string; backgroundColor?: string; inset?: boolean }
 
@@ -83,9 +83,8 @@ function createStateClass(value: string, options: Options) {
   const [borderColor, bgColor] = value.split(' ')
   const css: any = {}
   if (borderColor !== 'none') {
-    css.boxShadow = `${options.inset ? 'inset ' : ''}0 0 0 $borderWidths${[options.key]} $colors${
-      (borderColor !== 'default' && borderColor) || options.borderColor
-    }`
+    css.boxShadow = `${options.inset ? 'inset ' : ''}0 0 0 $borderWidths${[options.key]} $colors${(borderColor !== 'default' && borderColor) || options.borderColor
+      }`
   }
 
   if (bgColor) {
@@ -106,7 +105,7 @@ const utils = {
 }
 
 export const { styled, css, createTheme, globalCss, keyframes } = createStitches({
-  prefix: 'leva',
+  prefix: 'tinker',
   theme: getDefaultTheme(),
   utils: {
     // ...prefixes,
