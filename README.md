@@ -1,25 +1,25 @@
-# tinker-tools
+# tweak-tools
 
-Easy tinkering for your React projects to customize until greatness 🦄
+Easy tweaking for your React projects to customize until greatness 🦄 🚀
 
-[![npm (tag)](https://img.shields.io/npm/v/tinker-tools?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/tinker-tools) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/tinker-tools?style=flat&colorA=000000&colorB=000000&label=gzipped)](https://bundlephobia.com/result?p=tinker-tools) 
+[![npm (tag)](https://img.shields.io/npm/v/tweak-tools?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/tweak-tools) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/tweak-tools?style=flat&colorA=000000&colorB=000000&label=gzipped)](https://bundlephobia.com/result?p=tweak-tools) 
 
 ## Installation
 
 ```bash
-npm i tinker-tools
+npm i tweak-tools
 ```
 
 ### Quick start
 
-Simply call the `useTinker` hook from anywhere in your app:
+Simply call the `useTweaks` hook from anywhere in your app:
 
 ```jsx
-import { useTinker } from 'tinker-tools'
+import { useTweaks } from 'tweak-tools'
 
 function MyComponent() {
 
-  const { name, count } = useTinker({ name: 'World', count: 0 })
+  const { name, count } = useTweaks({ name: 'World', count: 0 })
 
   return (
     <div>
