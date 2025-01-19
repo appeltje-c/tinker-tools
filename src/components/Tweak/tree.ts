@@ -3,7 +3,7 @@ import merge from 'merge-value'
 import { getKeyPath } from '../../utils'
 import type { Tree } from '../../types'
 
-export const isInput = (v: object) => '__tinkerInput' in v
+export const isInput = (v: object) => '__tweakInput' in v
 
 export const buildTree = (paths: string[], filter?: string): Tree => {
   const tree = {}
@@ -12,7 +12,7 @@ export const buildTree = (paths: string[], filter?: string): Tree => {
     const [valueKey, folderPath] = getKeyPath(path)
     if (!_filter || valueKey.toLowerCase().indexOf(_filter) > -1) {
       merge(tree, folderPath, {
-        [valueKey]: { __tinkerInput: true, path },
+        [valueKey]: { __tweakInput: true, path },
       })
     }
   })

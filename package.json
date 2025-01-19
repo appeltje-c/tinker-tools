@@ -1,7 +1,7 @@
 {
-  "name": "tinker-tools",
-  "version": "0.6.0",
-  "description": "Tinkering to customize your React projects",
+  "name": "tweak-tools",
+  "version": "0.1.0",
+  "description": "Tweak your React projects until awesomeness",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -10,14 +10,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com/appeltje-c/tinker-tools.git"
+    "url": "git@github.com/appeltje-c/tweak-tools.git"
   },
   "author": "appeltje-c",
   "license": "MIT",
+  "keywords": [
+    "react",
+    "reactjs",
+    "tweaks",
+    "panel",
+    "three"
+  ],
   "bugs": {
-    "url": "https://github.com/appeltje-c/tinker-tools/issues"
+    "url": "https://github.com/appeltje-c/tweak-tools/issues"
   },
-  "homepage": "https://github.com/appeltje-c/tinker-tools#readme",
+  "homepage": "https://github.com/appeltje-c/tweak-tools#readme",
   "dependencies": {
     "@radix-ui/react-portal": "1.0.2",
     "@radix-ui/react-tooltip": "1.0.5",

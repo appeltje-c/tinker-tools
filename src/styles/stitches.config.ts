@@ -75,7 +75,7 @@ export const getDefaultTheme = () => ({
 })
 
 export type FullTheme = ReturnType<typeof getDefaultTheme>
-export type TinkerCustomTheme = Partial<{ [k in keyof FullTheme]: Partial<FullTheme[k]> }>
+export type TweakCustomTheme = Partial<{ [k in keyof FullTheme]: Partial<FullTheme[k]> }>
 
 type Options = { key: string; borderColor: string; backgroundColor?: string; inset?: boolean }
 
@@ -105,7 +105,7 @@ const utils = {
 }
 
 export const { styled, css, createTheme, globalCss, keyframes } = createStitches({
-  prefix: 'tinker',
+  prefix: 'tweak',
   theme: getDefaultTheme(),
   utils: {
     // ...prefixes,
@@ -142,7 +142,7 @@ export const { styled, css, createTheme, globalCss, keyframes } = createStitches
 })
 
 export const globalStyles = globalCss({
-  '.tinker__panel__dragged': {
+  '.tweak__panel__dragged': {
     WebkitUserDrag: 'none',
     userSelect: 'none',
     input: { userSelect: 'none' },

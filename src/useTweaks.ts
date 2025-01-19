@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useCallback, useState, useRef } from 'react'
-import { tinkerStore } from './store'
+import { tweakStore } from './store'
 import { folder } from './helpers'
 import { useDeepMemo, useValuesForPath } from './hooks'
-import { useRenderRoot } from './components/Tinker'
+import { useRenderRoot } from './components/Tweak'
 import type { FolderSettings, Schema, SchemaToValues, StoreType, OnChangeHandler } from './types'
 import shallow from 'zustand/shallow'
 
@@ -82,7 +82,7 @@ function parseArgs(
  * @param folderSettingsOrDeps
  * @param depsOrUndefined
  */
-export function useTinker<S extends Schema, F extends SchemaOrFn<S> | string, G extends SchemaOrFn<S>>(
+export function useTweaks<S extends Schema, F extends SchemaOrFn<S> | string, G extends SchemaOrFn<S>>(
   schemaOrFolderName: F,
   settingsOrDepsOrSchema?: HookSettings | React.DependencyList | G,
   depsOrSettingsOrFolderSettings?: React.DependencyList | HookSettings | FolderSettings,
@@ -115,11 +115,11 @@ export function useTinker<S extends Schema, F extends SchemaOrFn<S> | string, G 
     return folderName ? { [folderName]: folder(s, folderSettings) } : s
   }, deps)
 
-  // GlobalPanel means that no store was provided, therefore we're using the tinkerStore
+  // GlobalPanel means that no store was provided, therefore we're using the tweakStore
   const isGlobalPanel = !hookSettings?.store
 
   useRenderRoot(isGlobalPanel)
-  const [store] = useState(() => hookSettings?.store || tinkerStore)
+  const [store] = useState(() => hookSettings?.store || tweakStore)
 
   /**
    * Parses the schema to extract the inputs initial data.

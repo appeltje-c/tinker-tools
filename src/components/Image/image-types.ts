@@ -1,3 +1,3 @@
-import type { TinkerInputProps } from '../../types'
+import type { TweakInputProps } from '../../types'
 
-export type ImageProps = TinkerInputProps<string | undefined>
+export type ImageProps = TweakInputProps<string | undefined>

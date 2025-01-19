@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import create, { SetState, GetState, StoreApi } from 'zustand'
 import { subscribeWithSelector } from 'zustand/middleware'
-import { normalizeInput, join, updateInput, TinkerErrors, getUid } from './utils'
+import { normalizeInput, join, updateInput, TweakErrors, getUid } from './utils'
 import { SpecialInputs, MappedPaths, DataInput } from './types'
 import type { Data, FolderSettings, State, StoreType } from './types'
 import { createEventEmitter } from './eventEmitter'
@@ -86,7 +86,7 @@ export const Store = function (this: StoreType) {
   }
 
   /**
-   * When the useTinker hook unmmounts, it will call this function that will
+   * When the useTweak hook unmmounts, it will call this function that will
    * decrease the __refCount of all the inputs. When an input __refCount reaches 0, it
    * should no longer be displayed in the panel.
    *
@@ -148,7 +148,7 @@ export const Store = function (this: StoreType) {
           // @ts-ignore
           const { type, value, ...rest } = newInputData
           if (type !== input.type) {
-            console.warn(TinkerErrors.INPUT_TYPE_OVERRIDE, input.type, type)
+            console.warn(TweakErrors.INPUT_TYPE_OVERRIDE, input.type, type)
           } else {
             if (input.__refCount === 0 || override) {
               Object.assign(input, rest)
@@ -222,7 +222,7 @@ export const Store = function (this: StoreType) {
     try {
       return this.getData()[path] as DataInput
     } catch (e) {
-      console.warn(TinkerErrors.PATH_DOESNT_EXIST, path, "null")
+      console.warn(TweakErrors.PATH_DOESNT_EXIST, path, "null")
     }
   }
 
@@ -263,7 +263,7 @@ export const Store = function (this: StoreType) {
 
     Object.entries(schema).forEach(([key, rawInput]: [string, any]) => {
       // if the key is empty, skip schema parsing and prompt an error.
-      if (key === '') return console.warn(TinkerErrors.EMPTY_KEY, "", "")
+      if (key === '') return console.warn(TweakErrors.EMPTY_KEY, "", "")
 
       let newPath = join(rootPath, key)
 
@@ -277,7 +277,7 @@ export const Store = function (this: StoreType) {
         if (!(newPath in folders)) folders[newPath] = rawInput.settings as FolderSettings
       } else if (key in mappedPaths) {
         // if a key already exists, prompt an error.
-        console.warn(TinkerErrors.DUPLICATE_KEYS, key, newPath)
+        console.warn(TweakErrors.DUPLICATE_KEYS, key, newPath)
       } else {
         const normalizedInput = normalizeInput(rawInput, key, newPath, data)
         if (normalizedInput) {
@@ -287,7 +287,7 @@ export const Store = function (this: StoreType) {
           data[newPath] = { type, ..._options, ...input, fromPanel: true }
           mappedPaths[key] = { path: newPath, onChange, transient, onEditStart, onEditEnd }
         } else {
-          console.warn(TinkerErrors.UNKNOWN_INPUT, newPath, rawInput)
+          console.warn(TweakErrors.UNKNOWN_INPUT, newPath, rawInput)
         }
       }
     })
@@ -302,7 +302,7 @@ export const Store = function (this: StoreType) {
   }
 } as any as { new(): StoreType }
 
-export const tinkerStore = new Store()
+export const tweakStore = new Store()
 
 export function useCreateStore() {
   return useMemo(() => new Store(), [])
@@ -311,5 +311,5 @@ export function useCreateStore() {
 if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
   // TODO remove store from window
   // @ts-expect-error
-  window.__STORE = tinkerStore
+  window.__STORE = tweakStore
 }

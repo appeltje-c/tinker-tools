@@ -9,7 +9,7 @@ export const StyledInput = styled('input', {
   flex: 1,
   height: '100%',
   variants: {
-    tinkerType: { number: { textAlign: 'right' } },
+    tweakType: { number: { textAlign: 'right' } },
     as: { textarea: { padding: '$sm' } },
   },
 })

@@ -1,4 +1,4 @@
-import { TinkerErrors } from './utils/log'
+import { TweakErrors } from './utils/log'
 import type {
   Plugin,
   CustomInput,
@@ -6,7 +6,7 @@ import type {
   InternalPlugin,
   StoreType,
   Data,
-  TinkerInputs,
+  TweakInputs,
   InputOptions,
 } from './types'
 
@@ -29,11 +29,11 @@ export function getValueType({ value, ...settings }: any) {
  * @param plugin
  */
 export function register<Input, Value, InternalSettings, Settings>(
-  type: TinkerInputs,
+  type: TweakInputs,
   { schema, ...plugin }: InternalPlugin<Input, Value, Settings, InternalSettings>
 ) {
   if (type in Plugins) {
-    console.warn(TinkerErrors.ALREADY_REGISTERED_TYPE, type)
+    console.warn(TweakErrors.ALREADY_REGISTERED_TYPE, type)
     return
   }
   Schemas.push((value: any, settings?: any) => schema(value, settings) && type)

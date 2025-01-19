@@ -153,8 +153,8 @@ type SanitizeProps = {
 type ValueErrorType = { type: string; message: string; previousValue: any; error?: unknown }
 
 const ValueError = function (this: ValueErrorType, message: string, value: any, error?: unknown) {
-  this.type = 'tinker_error'
-  this.message = 'Tinker: ' + message
+  this.type = 'tweak_error'
+  this.message = 'Tweak: ' + message
   this.previousValue = value
   this.error = error
 } as unknown as { new(message: string, value: any, error?: unknown): ValueErrorType }

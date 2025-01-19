@@ -1,3 +1,3 @@
-import type { TinkerInputProps } from '../../types'
+import type { TweakInputProps } from '../../types'
 
-export type BooleanProps = TinkerInputProps<boolean>
+export type BooleanProps = TweakInputProps<boolean>

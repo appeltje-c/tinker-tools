@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import * as RadixTooltip from '@radix-ui/react-tooltip'
 import { StyledLabel, CopyLabelContainer, StyledOptionalToggle, StyledToolTipContent, ToolTipArrow } from './StyledUI'
 import { useInputContext, usePanelSettingsContext } from '../../context'
-import { TinkerErrors } from '../../utils'
+import { TweakErrors } from '../../utils'
 
 function OptionalToggle() {
   const { id, disable, disabled } = useInputContext()
@@ -63,7 +63,7 @@ export function Label({ align, ...props }: LabelProps & { align?: 'top' }) {
       await navigator.clipboard.writeText(JSON.stringify({ [key]: value ?? '' }))
       setCopied(true)
     } catch {
-      console.warn(TinkerErrors.CLIPBOARD_ERROR)
+      console.warn(TweakErrors.CLIPBOARD_ERROR)
     }
   }
 

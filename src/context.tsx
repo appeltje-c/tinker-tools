@@ -24,11 +24,11 @@ export function usePanelSettingsContext() {
   return useContext(PanelSettingsContext)!
 }
 
-type TinkerStoreProviderProps = {
+type TweakStoreProviderProps = {
   children: React.ReactChild | React.ReactChild[] | React.ReactChildren
   store: StoreType
 }
 
-export function TinkerStoreProvider({ children, store }: TinkerStoreProviderProps) {
+export function TweakStoreProvider({ children, store }: TweakStoreProviderProps) {
   return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
 }

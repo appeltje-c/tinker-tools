@@ -8,37 +8,37 @@ import vector3d from './components/Vector3d'
 import vector2d from './components/Vector2d'
 import image from './components/Image'
 import interval from './components/Interval'
-import { TinkerInputs } from './types'
+import { TweakInputs } from './types'
 
 /**
  * Register all the primitive inputs.
  * @note could potentially be done elsewhere.
  */
 
-register(TinkerInputs.SELECT, select)
-register(TinkerInputs.IMAGE, image)
-register(TinkerInputs.NUMBER, number)
-register(TinkerInputs.COLOR, color)
-register(TinkerInputs.STRING, string)
-register(TinkerInputs.BOOLEAN, boolean)
-register(TinkerInputs.INTERVAL, interval)
-register(TinkerInputs.VECTOR3D, vector3d)
-register(TinkerInputs.VECTOR2D, vector2d)
+register(TweakInputs.SELECT, select)
+register(TweakInputs.IMAGE, image)
+register(TweakInputs.NUMBER, number)
+register(TweakInputs.COLOR, color)
+register(TweakInputs.STRING, string)
+register(TweakInputs.BOOLEAN, boolean)
+register(TweakInputs.INTERVAL, interval)
+register(TweakInputs.VECTOR3D, vector3d)
+register(TweakInputs.VECTOR2D, vector2d)
 
 // main hook
-export { useTinker } from './useTinker'
+export { useTweaks } from './useTweaks'
 
 // panel components
-export { Tinker, TinkerPanel } from './components/Tinker'
+export { Tweak, TweakPanel } from './components/Tweak'
 
 // simplifies passing store as context
-export { useStoreContext, TinkerStoreProvider } from './context'
+export { useStoreContext, TweakStoreProvider } from './context'
 
-// export the TinkerStore (default store)
+// export the TweakStore (default store)
 // hook to create custom store
-export { tinkerStore, useCreateStore } from './store'
+export { tweakStore, useCreateStore } from './store'
 
 // export folder, monitor, button
 export * from './helpers'
 
-export { TinkerInputs }
+export { TweakInputs }

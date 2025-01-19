@@ -77,7 +77,7 @@ export type DataItem = DataInput | (SpecialInput & CommonOptions & { __refCount:
 export type Data = Record<string, DataItem>
 
 export type Tree = {
-  [key: string]: { __tinkerInput: true; path: string } | Tree
+  [key: string]: { __tweakInput: true; path: string } | Tree
 }
 
 /**

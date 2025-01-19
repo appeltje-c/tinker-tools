@@ -1,4 +1,4 @@
-import type { ColorVectorInput, InputWithSettings, TinkerInputProps } from '../../types'
+import type { ColorVectorInput, InputWithSettings, TweakInputProps } from '../../types'
 
 export type Format = 'hex' | 'rgb' | 'hsl' | 'hsv'
 
@@ -7,4 +7,4 @@ export type InternalColorSettings = { format: Format; hasAlpha: boolean; isStrin
 
 export type ColorInput = InputWithSettings<Color>
 
-export type ColorProps = TinkerInputProps<Color, InternalColorSettings, string>
+export type ColorProps = TweakInputProps<Color, InternalColorSettings, string>

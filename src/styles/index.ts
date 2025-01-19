@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import { getDefaultTheme, FullTheme, TinkerCustomTheme, createTheme } from './stitches.config'
+import { getDefaultTheme, FullTheme, TweakCustomTheme, createTheme } from './stitches.config'
 import { ThemeContext } from '../context'
-import { TinkerErrors } from '../utils'
+import { TweakErrors } from '../utils'
 
-export function mergeTheme(newTheme?: TinkerCustomTheme): { theme: FullTheme; className: string } {
+export function mergeTheme(newTheme?: TweakCustomTheme): { theme: FullTheme; className: string } {
   const defaultTheme = getDefaultTheme()
   if (!newTheme) return { theme: defaultTheme, className: '' }
   Object.keys(newTheme!).forEach((key) => {
@@ -17,7 +17,7 @@ export function mergeTheme(newTheme?: TinkerCustomTheme): { theme: FullTheme; cl
 export function useTh<C extends keyof FullTheme>(category: C, key: keyof FullTheme[C]) {
   const { theme } = useContext(ThemeContext)!
   if (!(category in theme!) || !(key in theme![category]!)) {
-    console.warn(TinkerErrors.THEME_ERROR, category, key)
+    console.warn(TweakErrors.THEME_ERROR, category, key)
     return ''
   }
 

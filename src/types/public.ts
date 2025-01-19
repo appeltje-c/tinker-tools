@@ -12,7 +12,7 @@ export type RenderFn = (get: (key: string) => any) => boolean
  */
 export type InputWithSettings<V extends unknown, Settings = {}, K extends string = 'value'> = {
   [key in K]: V
-} & { type?: TinkerInputs } & Settings
+} & { type?: TweakInputs } & Settings
 
 /**
  * Either the raw value, either the value with its settings
@@ -32,7 +32,7 @@ export enum SpecialInputs {
   FOLDER = 'FOLDER',
 }
 
-export enum TinkerInputs {
+export enum TweakInputs {
   SELECT = 'SELECT',
   IMAGE = 'IMAGE',
   NUMBER = 'NUMBER',
@@ -345,11 +345,11 @@ export type InputContextProps = {
  *
  * @example
  * ```ts
- *  useInputContext<TinkerInputProps<boolean>>()
+ *  useInputContext<TweakInputProps<boolean>>()
  * ```
  * @public
  */
-export interface TinkerInputProps<V, InternalSettings = {}, DisplayValue = V> {
+export interface TweakInputProps<V, InternalSettings = {}, DisplayValue = V> {
   path?: string
   id?: string
   hint?: string

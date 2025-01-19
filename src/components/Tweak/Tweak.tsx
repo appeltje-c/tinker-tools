@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
-import { tinkerStore } from '../../store'
-import { TinkerRoot, TinkerRootProps } from './TinkerRoot'
+import { tweakStore } from '../../store'
+import { TweakRoot, TweakRootProps } from './TweakRoot'
 import { render } from '../../utils/react'
 
 let rootInitialized = false
 let rootEl: HTMLElement | null = null
 
-type TinkerProps = Omit<Partial<TinkerRootProps>, 'store'> & { isRoot?: boolean }
+type TweakProps = Omit<Partial<TweakRootProps>, 'store'> & { isRoot?: boolean }
 
 // uses global store
-export function Tinker({ isRoot = false, ...props }: TinkerProps) {
+export function Tweak({ isRoot = false, ...props }: TweakProps) {
   useEffect(() => {
     rootInitialized = true
     // if this panel was attached somewhere in the app and there is already
@@ -23,11 +23,11 @@ export function Tinker({ isRoot = false, ...props }: TinkerProps) {
     }
   }, [isRoot])
 
-  return <TinkerRoot store={tinkerStore} {...props} />
+  return <TweakRoot store={tweakStore} {...props} />
 }
 
 /**
- * This hook is used by Tinker useTinker, and ensures that we spawn a Tinker Panel
+ * This hook is used by Tweak useTweaks, and ensures that we spawn a Tweak Panel
  * without the user having to put it into the component tree. This should only
  * happen when using the global store
  * @param isGlobalPanel
@@ -37,10 +37,10 @@ export function useRenderRoot(isGlobalPanel: boolean) {
     if (isGlobalPanel && !rootInitialized) {
       if (!rootEl) {
         rootEl =
-          document.getElementById('tinker__root') || Object.assign(document.createElement('div'), { id: 'tinker__root' })
+          document.getElementById('tweak__root') || Object.assign(document.createElement('div'), { id: 'tweak__root' })
         if (document.body) {
           document.body.appendChild(rootEl)
-          render(<Tinker isRoot />, rootEl)
+          render(<Tweak isRoot />, rootEl)
         }
       }
       rootInitialized = true

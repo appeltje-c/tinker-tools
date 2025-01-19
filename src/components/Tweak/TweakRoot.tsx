@@ -5,16 +5,16 @@ import { TreeWrapper } from '../Folder'
 import { useDeepMemo, useTransform, useVisiblePaths } from '../../hooks'
 
 import { StyledRoot } from './StyledRoot'
-import { mergeTheme, TinkerCustomTheme, globalStyles } from '../../styles'
+import { mergeTheme, TweakCustomTheme, globalStyles } from '../../styles'
 import { ThemeContext, StoreContext, PanelSettingsContext } from '../../context'
 import { TitleWithFilter } from './Filter'
 import { StoreType } from '../../types'
 
-export type TinkerRootProps = {
+export type TweakRootProps = {
   /**
    * Theme with Stitches tokens
    */
-  theme?: TinkerCustomTheme
+  theme?: TweakCustomTheme
   /**
    * The store to be used by the panel
    */
@@ -61,7 +61,7 @@ export type TinkerRootProps = {
          */
         title?: React.ReactNode
         /**
-         * Toggle whether the Tinker panel can be dragged around via the title bar.
+         * Toggle whether the Tweak panel can be dragged around via the title bar.
          */
         drag?: boolean
         /**
@@ -69,19 +69,19 @@ export type TinkerRootProps = {
          */
         filter?: boolean
         /**
-         * The position(x and y coordinates) of the Tinker panel.
+         * The position(x and y coordinates) of the Tweak panel.
          */
         position?: { x?: number; y?: number }
         /**
-         * The callback is called when the Tinker panel is dragged.
+         * The callback is called when the Tweak panel is dragged.
          */
         onDrag?: (position: { x?: number; y?: number }) => void
         /**
-         * The callback is called when the Tinker panel starts to be dragged.
+         * The callback is called when the Tweak panel starts to be dragged.
          */
         onDragStart?: (position: { x?: number; y?: number }) => void
         /**
-         * The callback is called when the Tinker panel stops being dragged.
+         * The callback is called when the Tweak panel stops being dragged.
          */
         onDragEnd?: (position: { x?: number; y?: number }) => void
       }
@@ -91,7 +91,7 @@ export type TinkerRootProps = {
   hideCopyButton?: boolean
 }
 
-export function TinkerRoot({ store, hidden = false, theme, collapsed = false, ...props }: TinkerRootProps) {
+export function TweakRoot({ store, hidden = false, theme, collapsed = false, ...props }: TweakRootProps) {
   const themeContext = useDeepMemo(() => mergeTheme(theme), [theme])
   // collapsible
   const [toggled, setToggle] = useState(!collapsed)
@@ -114,7 +114,7 @@ export function TinkerRoot({ store, hidden = false, theme, collapsed = false, ..
 
   return (
     <ThemeContext.Provider value={themeContext}>
-      <TinkerCore
+      <TweakCore
         store={store}
         {...props}
         toggled={computedToggled}
@@ -125,14 +125,14 @@ export function TinkerRoot({ store, hidden = false, theme, collapsed = false, ..
   )
 }
 
-type TinkerCoreProps = Omit<TinkerRootProps, 'theme' | 'hidden' | 'collapsed'> & {
+type TweakCoreProps = Omit<TweakRootProps, 'theme' | 'hidden' | 'collapsed'> & {
   store: StoreType
   rootClass: string
   toggled: boolean
   setToggle: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const TinkerCore = React.memo(
+const TweakCore = React.memo(
   ({
     store,
     rootClass,
@@ -152,7 +152,7 @@ const TinkerCore = React.memo(
     hideCopyButton = false,
     toggled,
     setToggle,
-  }: TinkerCoreProps) => {
+  }: TweakCoreProps) => {
     const paths = useVisiblePaths(store)
     const [filter, setFilter] = useState('')
     const tree = useMemo(() => buildTree(paths, filter), [paths, filter])

@@ -24,7 +24,7 @@ export function useInputSetters<V, Settings extends object>({ value, type, setti
       } catch (error: any) {
         const { type, previousValue } = error
         // make sure we throw an error if it's not a sanitization error
-        if (type !== 'tinker_error') throw error
+        if (type !== 'tweak_error') throw error
         setFormat(previousValue)
       }
     },

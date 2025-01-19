@@ -76,7 +76,7 @@ export function ValueInput({
     <InputContainer textArea={isTextArea}>
       {innerLabel && typeof innerLabel === 'string' ? <InnerLabel>{innerLabel}</InnerLabel> : innerLabel}
       <StyledInput
-        tinkerType={type}
+        tweakType={type}
         // @ts-ignore
         ref={inputRef}
         id={inputId}
